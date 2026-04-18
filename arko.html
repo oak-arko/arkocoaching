@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ARKŌ — Coaching para Bienestar Integral. Un proceso privado y personalizado de 12 semanas para desarrollar liderazgo interno, tomar decisiones con claridad y construir estabilidad interna real. Fundado por Oscar Pietri.">
+<meta property="og:title" content="ARKŌ — Coaching para Bienestar Integral">
+<meta property="og:description" content="Un proceso privado de 12 semanas para vivir con claridad, dirección y estabilidad interna.">
+<title>ARKŌ — Coaching para Bienestar Integral</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:      #0F0E09;
+  --text:    #F0EDE6;
+  --gold:    #C8AC78;
+  --muted:   #7A7670;
+  --panel-1: #191810;
+  --panel-2: #1E1D14;
+  --rule:    #2E2C22;
+  --serif:   'Georgia', 'Times New Roman', serif;
+  --sans:    'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 44px;
+}
+
+.label {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+}
+.label-muted { color: var(--muted); }
+
+/* ——— NAV ——— */
+nav.site-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 22px 44px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  transition: background 0.35s ease, border-color 0.35s ease;
+  border-bottom: 1px solid transparent;
+}
+nav.site-nav.scrolled {
+  background: var(--bg);
+  border-bottom-color: var(--rule);
+}
+.wordmark {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.2em;
+  color: var(--text);
+}
+.nav-cta {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 2px;
+  transition: opacity 0.2s ease;
+}
+.nav-cta:hover { opacity: 0.65; }
+
+/* ——— HERO ——— */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 140px 0 80px;
+  overflow: hidden;
+}
+.hero-watermark {
+  position: absolute;
+  right: -50px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 280px;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  opacity: 0.022;
+  pointer-events: none;
+  line-height: 1;
+  user-select: none;
+}
+.hero-inner { position: relative; z-index: 2; max-width: 860px; }
+
+.hero .label {
+  display: block;
+  margin-bottom: 32px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: lineIn 0.9s ease forwards;
+  animation-delay: 0.1s;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 0;
+}
+.hero h1 .line {
+  display: block;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: lineIn 0.9s ease forwards;
+}
+.hero h1 .line:nth-child(1) { animation-delay: 0.25s; }
+.hero h1 .line:nth-child(2) { animation-delay: 0.38s; }
+.hero h1 .line:nth-child(3) { animation-delay: 0.51s; }
+
+.hero-rule {
+  width: 120px;
+  height: 1px;
+  background: var(--gold);
+  margin: 28px 0 32px;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: drawLine 0.9s ease forwards;
+  animation-delay: 0.75s;
+}
+.hero p.sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1.55;
+  color: var(--text);
+  opacity: 0;
+  max-width: 660px;
+  margin-bottom: 44px;
+  animation: lineIn 0.9s ease forwards;
+  animation-delay: 0.9s;
+}
+.hero-ctas {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  margin-bottom: 54px;
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: lineIn 0.9s ease forwards;
+  animation-delay: 1.05s;
+}
+.btn-primary {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 16px 30px;
+  background: transparent;
+  transition: background 0.25s ease, color 0.25s ease;
+  cursor: pointer;
+}
+.btn-primary:hover { background: var(--gold); color: var(--bg); }
+
+.link-secondary {
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text);
+  opacity: 0.75;
+  transition: opacity 0.2s ease;
+}
+.link-secondary:hover { opacity: 1; }
+.link-secondary .arrow {
+  display: inline-block;
+  margin-left: 8px;
+  transition: transform 0.2s ease;
+}
+.link-secondary:hover .arrow { transform: translateX(4px); }
+
+.trust-line {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: lineIn 0.9s ease forwards;
+  animation-delay: 1.2s;
+}
+
+@keyframes lineIn { to { opacity: 1; transform: translateY(0); } }
+@keyframes drawLine { to { transform: scaleX(1); } }
+
+/* ——— SCROLL REVEAL ——— */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.85s ease, transform 0.85s ease;
+}
+.reveal.in { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+.reveal-d4 { transition-delay: 0.4s; }
+
+/* ——— TENSION / EL PROBLEMA ——— */
+.tension {
+  background: var(--panel-1);
+  padding: 108px 0;
+}
+.tension .label { display: block; text-align: center; margin-bottom: 36px; }
+.tension h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 42px;
+  line-height: 1.18;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 68px;
+}
+.tension-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  max-width: 920px;
+  margin: 0 auto 60px;
+}
+.tension-cols p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text);
+  opacity: 0.72;
+}
+.tension-italic {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.55;
+  text-align: center;
+  color: var(--text);
+  max-width: 740px;
+  margin: 0 auto;
+}
+
+/* ——— 3-PROBLEM TILES ——— */
+.tiles { padding: 108px 0; }
+.tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.tile {
+  background: var(--panel-2);
+  border: 1px solid var(--rule);
+  border-top: 2px solid var(--gold);
+  padding: 36px 32px;
+}
+.tile .label { display: block; margin-bottom: 18px; }
+.tile p {
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: var(--text);
+  opacity: 0.76;
+}
+
+/* ——— MECHANISM / LIDERAZGO INTERNO ——— */
+.mechanism {
+  padding: 110px 0;
+  border-top: 1px solid var(--rule);
+}
+.mech-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.mech-left .label { display: block; margin-bottom: 28px; }
+.mech-left h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 1.15;
+  margin-bottom: 22px;
+}
+.mech-left .mech-sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--text);
+  opacity: 0.7;
+  max-width: 380px;
+}
+.mech-right p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text);
+  opacity: 0.82;
+  margin-bottom: 22px;
+}
+.mech-right p:last-child { margin-bottom: 0; }
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 72px;
+  justify-content: center;
+}
+.pill {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 10px 20px;
+}
+
+/* ——— FELT CHANGE SECTION ——— */
+.felt {
+  background: var(--panel-1);
+  padding: 120px 0;
+  border-top: 1px solid var(--rule);
+}
+.felt-inner {
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+}
+.felt .label { display: block; margin-bottom: 44px; }
+.felt-symbol {
+  margin: 0 auto 52px;
+  display: block;
+}
+.felt h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 44px;
+  line-height: 1.16;
+  color: var(--text);
+  max-width: 700px;
+  margin: 0 auto 40px;
+}
+.felt-body {
+  text-align: left;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.felt-body p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text);
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+.felt-body p:last-child { margin-bottom: 0; }
+.felt-testimonial {
+  margin-top: 72px;
+  padding-top: 48px;
+  border-top: 1px solid var(--rule);
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  padding-left: 40px;
+}
+.felt-testimonial::before {
+  content: """;
+  position: absolute;
+  left: 0;
+  top: 44px;
+  font-family: var(--serif);
+  font-size: 52px;
+  color: var(--gold);
+  line-height: 1;
+}
+.felt-testimonial p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text);
+  opacity: 0.9;
+  margin-bottom: 22px;
+}
+.felt-testimonial .attr {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ——— DIMENSIONS SECTION ——— */
+.dimensions {
+  padding: 120px 0;
+  border-top: 1px solid var(--rule);
+}
+.dimensions-header { margin-bottom: 72px; }
+.dimensions-header .label { display: block; margin-bottom: 24px; }
+.dimensions-header p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--text);
+  opacity: 0.72;
+  max-width: 680px;
+}
+.dim-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.dim-item {
+  padding: 36px 0;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+.dim-item:nth-child(odd) { padding-right: 48px; }
+.dim-item:nth-child(even) {
+  padding-left: 48px;
+  border-left: 1px solid var(--rule);
+}
+.dim-num {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+  padding-top: 4px;
+}
+.dim-content {}
+.dim-content h3 {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.dim-content p {
+  font-size: 14px;
+  line-height: 1.72;
+  color: var(--text);
+  opacity: 0.7;
+}
+
+/* ——— WHY 12 WEEKS ——— */
+.why-twelve {
+  background: var(--panel-2);
+  padding: 110px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.why-split {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 80px;
+  align-items: start;
+}
+.why-left .label { display: block; margin-bottom: 28px; }
+.why-left h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1.2;
+}
+.why-right p {
+  font-size: 15px;
+  line-height: 1.82;
+  color: var(--text);
+  opacity: 0.78;
+  margin-bottom: 22px;
+}
+.why-right p:last-child { margin-bottom: 0; }
+
+/* ——— GEOGRAPHIC REACH ——— */
+.reach {
+  background: var(--panel-1);
+  padding: 110px 0;
+}
+.reach .label { display: block; margin-bottom: 32px; }
+.reach h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 1.18;
+  max-width: 700px;
+  margin-bottom: 28px;
+}
+.reach p.reach-sub {
+  font-size: 15px;
+  line-height: 1.78;
+  color: var(--text);
+  opacity: 0.72;
+  max-width: 620px;
+  margin-bottom: 72px;
+}
+.reach-countries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 40px;
+}
+.reach-country {
+  flex: 1 1 auto;
+  padding: 32px 0;
+  text-align: center;
+  border-right: 1px solid var(--rule);
+}
+.reach-country:first-child { text-align: left; }
+.reach-country:last-child { border-right: none; text-align: right; }
+.reach-country-name {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--text);
+  display: block;
+  margin-bottom: 8px;
+}
+.reach-country-sub {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.reach-note {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* ——— TESTIMONIALS ——— */
+.testimonials {
+  padding: 110px 0;
+  border-top: 1px solid var(--rule);
+}
+.testimonials .label { display: block; margin-bottom: 60px; }
+.test-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.testimonial {
+  background: var(--panel-2);
+  border: 1px solid var(--rule);
+  padding: 44px 32px 34px;
+  position: relative;
+}
+.testimonial::before {
+  content: """;
+  position: absolute;
+  top: 10px;
+  left: 24px;
+  font-family: var(--serif);
+  font-size: 52px;
+  color: var(--gold);
+  line-height: 1;
+}
+.testimonial p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  opacity: 0.88;
+  margin-top: 26px;
+  margin-bottom: 28px;
+}
+.testimonial .attr {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ——— PROCESS ——— */
+.process { padding: 120px 0; border-top: 1px solid var(--rule); }
+.process-header { margin-bottom: 80px; }
+.process-header .label { display: block; margin-bottom: 24px; }
+.process-header h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 1.15;
+  max-width: 600px;
+}
+.step {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 40px;
+  padding: 48px 0;
+  border-top: 1px solid var(--rule);
+}
+.step:last-of-type { border-bottom: 1px solid var(--rule); }
+.step-num {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 36px;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+.step-content h3 {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+.step-content p {
+  font-size: 15px;
+  line-height: 1.78;
+  color: var(--text);
+  opacity: 0.78;
+  max-width: 720px;
+}
+.includes-strip {
+  margin-top: 52px;
+  text-align: center;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 2.4;
+}
+
+/* ——— PRICING ——— */
+.pricing {
+  background: var(--panel-1);
+  padding: 116px 0;
+  border-top: 1px solid var(--rule);
+}
+.pricing-header { text-align: center; margin-bottom: 68px; }
+.pricing-header .label { display: block; margin-bottom: 22px; }
+.pricing-header h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1.15;
+}
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+.price-card {
+  border: 1px solid var(--rule);
+  padding: 46px 38px;
+  background: var(--panel-1);
+}
+.price-card.primary {
+  border-top: 2px solid var(--gold);
+  background: var(--panel-2);
+}
+.price-card .label { display: block; margin-bottom: 24px; }
+.price-card .price {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 1;
+  color: var(--text);
+  margin-bottom: 22px;
+  letter-spacing: -0.01em;
+}
+.price-card p.note {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text);
+  opacity: 0.68;
+}
+.pricing-fine {
+  max-width: 760px;
+  margin: 56px auto 0;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.82;
+  color: var(--muted);
+}
+.pricing-fine .star { color: var(--gold); }
+
+/* ——— ABOUT ——— */
+.about { padding: 120px 0; border-top: 1px solid var(--rule); }
+.about-split {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 80px;
+  align-items: start;
+}
+.about-name {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1.12;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+.about-role {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 24px;
+  line-height: 1.8;
+}
+.about-rule {
+  width: 56px;
+  height: 1px;
+  background: var(--gold);
+}
+.about-bio p {
+  font-size: 15px;
+  line-height: 1.82;
+  color: var(--text);
+  opacity: 0.8;
+  margin-bottom: 22px;
+}
+.about-bio p:last-child { margin-bottom: 0; }
+.no-patologico {
+  margin-top: 32px;
+  padding: 28px 32px;
+  border: 1px solid var(--rule);
+  border-left: 2px solid var(--gold);
+  background: var(--panel-2);
+}
+.no-patologico .label { display: block; margin-bottom: 14px; }
+.no-patologico p {
+  font-size: 14px !important;
+  line-height: 1.78 !important;
+  opacity: 0.75 !important;
+  margin-bottom: 0 !important;
+}
+
+/* ——— FILTER ——— */
+.filter {
+  background: var(--panel-1);
+  padding: 110px 0;
+  border-top: 1px solid var(--rule);
+}
+.filter-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+.filter-col h3 {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--rule);
+}
+.filter-col.no h3 { color: var(--muted); }
+.filter-list { list-style: none; }
+.filter-list li {
+  font-family: var(--sans);
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--text);
+  padding: 17px 0 17px 24px;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+.filter-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+}
+.filter-col.no .filter-list li { color: var(--muted); opacity: 0.85; }
+.filter-col.no .filter-list li::before { color: var(--muted); }
+
+/* ——— FINAL CTA ——— */
+.final {
+  padding: 130px 0 115px;
+  text-align: center;
+}
+.final h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 1.14;
+  max-width: 680px;
+  margin: 0 auto 32px;
+}
+.final p.sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.58;
+  color: var(--text);
+  opacity: 0.68;
+  max-width: 560px;
+  margin: 0 auto 58px;
+}
+.final-ctas {
+  display: flex;
+  gap: 28px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ——— FOOTER ——— */
+footer.site-footer {
+  border-top: 1px solid var(--rule);
+  padding: 38px 0;
+  text-align: center;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ——— RESPONSIVE 768px ——— */
+@media (max-width: 768px) {
+  .container { padding: 0 24px; }
+  nav.site-nav { padding: 18px 24px; }
+  .nav-cta { font-size: 10px; letter-spacing: 0.14em; }
+
+  .hero { padding: 120px 0 64px; }
+  .hero h1 { font-size: 36px; }
+  .hero p.sub { font-size: 17px; }
+  .hero-watermark { font-size: 160px; opacity: 0.015; }
+  .hero-ctas { flex-direction: column; align-items: flex-start; gap: 18px; }
+  .btn-primary { width: 100%; text-align: center; }
+  .trust-line { font-size: 10px; line-height: 2.2; }
+
+  .tension { padding: 72px 0; }
+  .tension h2 { font-size: 28px; margin-bottom: 44px; }
+  .tension-cols { grid-template-columns: 1fr; gap: 26px; }
+  .tension-italic { font-size: 16px; }
+
+  .tiles { padding: 72px 0; }
+  .tiles-grid { grid-template-columns: 1fr; gap: 16px; }
+
+  .mechanism { padding: 72px 0; }
+  .mech-split { grid-template-columns: 1fr; gap: 36px; }
+  .mech-left h2 { font-size: 30px; }
+  .pills { margin-top: 44px; gap: 10px; }
+
+  .felt { padding: 80px 0; }
+  .felt h2 { font-size: 30px; }
+  .felt-testimonial { margin-top: 52px; }
+
+  .dimensions { padding: 80px 0; }
+  .dim-grid { grid-template-columns: 1fr; }
+  .dim-item:nth-child(odd) { padding-right: 0; }
+  .dim-item:nth-child(even) { padding-left: 0; border-left: none; }
+
+  .why-twelve { padding: 72px 0; }
+  .why-split { grid-template-columns: 1fr; gap: 36px; }
+  .why-left h2 { font-size: 28px; }
+
+  .reach { padding: 72px 0; }
+  .reach h2 { font-size: 28px; }
+  .reach-countries { flex-direction: column; }
+  .reach-country { border-right: none; border-bottom: 1px solid var(--rule); padding: 24px 0; text-align: left !important; }
+  .reach-country:last-child { border-bottom: none; }
+
+  .testimonials { padding: 72px 0; }
+  .test-grid { grid-template-columns: 1fr; gap: 18px; }
+
+  .process { padding: 72px 0; }
+  .process-header h2 { font-size: 28px; }
+  .step { grid-template-columns: 1fr; gap: 14px; padding: 32px 0; }
+  .step-num { font-size: 30px; }
+
+  .pricing { padding: 72px 0; }
+  .pricing-header h2 { font-size: 28px; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .price-card .price { font-size: 38px; }
+
+  .about { padding: 72px 0; }
+  .about-split { grid-template-columns: 1fr; gap: 40px; }
+  .about-name { font-size: 30px; }
+
+  .filter { padding: 72px 0; }
+  .filter-grid { grid-template-columns: 1fr; gap: 48px; }
+
+  .final { padding: 80px 0 72px; }
+  .final h2 { font-size: 30px; }
+  .final-ctas { flex-direction: column; gap: 18px; }
+  .final-ctas .btn-primary { width: 100%; }
+
+  footer.site-footer { padding: 28px 24px; font-size: 9px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav" id="siteNav">
+  <a href="#top" class="wordmark">ARKŌ</a>
+  <a href="https://calendly.com/oak-arkowellness/consulta-inicial-coaching-para-bienestar-integral"
+     target="_blank" rel="noopener" class="nav-cta">Agendar consulta inicial</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-watermark" aria-hidden="true">ARKŌ</div>
+  <div class="container">
+    <div class="hero-inner">
+      <span class="label">Coaching para Bienestar Integral</span>
+      <h1>
+        <span class="line">Desarrolla la capacidad</span>
+        <span class="line">de vivir con claridad,</span>
+        <span class="line">dirección y estabilidad interna.</span>
+      </h1>
+      <div class="hero-rule" aria-hidden="true"></div>
+      <p class="sub">Un proceso privado y personalizado de 12 semanas para dejar de sobrepensar, tomar decisiones con claridad y construir estabilidad interna real.</p>
+      <div class="hero-ctas">
+        <a href="https://calendly.com/oak-arkowellness/consulta-inicial-coaching-para-bienestar-integral"
+           target="_blank" rel="noopener" class="btn-primary">Agendar consulta inicial</a>
+        <a href="#programa" class="link-secondary">Ver el programa <span class="arrow">→</span></a>
+      </div>
+      <div class="trust-line">
+        Más de 100 sesiones facilitadas &nbsp;·&nbsp; Personas acompañadas en más de 5 países &nbsp;·&nbsp; Presencial y online
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- EL PROBLEMA -->
+<section class="tension">
+  <div class="container">
+    <span class="label reveal">El problema</span>
+    <h2 class="reveal reveal-d1">No te falta capacidad.<br>Te falta liderazgo interno.</h2>
+    <div class="tension-cols">
+      <p class="reveal">Funcionar bien no es lo mismo que estar bien dirigido por dentro. Muchas personas operan desde el piloto automático — y lo saben — pero el patrón continúa igual.</p>
+      <p class="reveal reveal-d1">Le das vueltas a decisiones. Analizas demasiado. Te cuestionas constantemente. Y aunque a veces ves las cosas claras… no logras sostenerlo. Vuelves al mismo lugar.</p>
+    </div>
+    <p class="tension-italic reveal reveal-d2">El problema no es falta de disciplina. Es cómo estás funcionando internamente. Y eso se puede trabajar.</p>
+  </div>
+</section>
+
+<!-- 3 TILES -->
+<section class="tiles">
+  <div class="container">
+    <div class="tiles-grid">
+      <article class="tile reveal">
+        <span class="label">Sobrepensamiento</span>
+        <p>La mente analiza, anticipa y repasa — pero no llega a claridad. El pensamiento se convierte en presión, no en dirección.</p>
+      </article>
+      <article class="tile reveal reveal-d1">
+        <span class="label">Reactividad</span>
+        <p>Reacciones que no elegiste. Un estándar interno que no descansa. Patrones que funcionan solos, sin que los decidas.</p>
+      </article>
+      <article class="tile reveal reveal-d2">
+        <span class="label">Insight sin integración</span>
+        <p>Sabes bastante sobre ti. Y sin embargo los patrones siguen. Entender no es integrar. Saber no es cambiar.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- LIDERAZGO INTERNO / MECHANISM -->
+<section class="mechanism" id="programa">
+  <div class="container">
+    <div class="mech-split">
+      <div class="mech-left">
+        <span class="label reveal">La solución</span>
+        <h2 class="reveal reveal-d1">Liderazgo interno.</h2>
+        <p class="mech-sub reveal reveal-d2">La capacidad de reconocer lo que se activa en ti sin quedar automáticamente gobernado por ello.</p>
+      </div>
+      <div class="mech-right">
+        <p class="reveal">Este proceso no está diseñado para que "te sientas mejor". Está diseñado para que operes diferente.</p>
+        <p class="reveal reveal-d1">Para que puedas observar tu mente sin quedar atrapado en ella. Interrumpir patrones automáticos en tiempo real. Tomar decisiones con claridad, incluso bajo presión. Sostener estabilidad emocional en situaciones reales.</p>
+        <p class="reveal reveal-d2">Esto no se queda en ideas. Se trabaja directamente en la experiencia.</p>
+      </div>
+    </div>
+    <div class="pills reveal reveal-d2">
+      <span class="pill">Claridad</span>
+      <span class="pill">Dirección</span>
+      <span class="pill">Capacidad de respuesta</span>
+      <span class="pill">Coherencia interna</span>
+    </div>
+  </div>
+</section>
+
+<!-- FELT CHANGE: NO SE QUEDA EN COMPRENSIÓN -->
+<section class="felt">
+  <div class="container">
+    <div class="felt-inner">
+      <span class="label reveal">Lo que lo hace distinto</span>
+
+      <!-- Architectural SVG symbol: a continuous line with a pivot point -->
+      <svg class="felt-symbol reveal reveal-d1" width="180" height="48"
+           viewBox="0 0 180 48" fill="none" xmlns="http://www.w3.org/2000/svg"
+           aria-hidden="true">
+        <line x1="0" y1="28" x2="180" y2="28" stroke="#C8AC78" stroke-width="1"/>
+        <line x1="90" y1="8" x2="90" y2="22" stroke="#C8AC78" stroke-width="1"/>
+        <circle cx="90" cy="28" r="5" stroke="#C8AC78" stroke-width="1"/>
+        <line x1="62" y1="28" x2="72" y2="14" stroke="#C8AC78" stroke-width="1"/>
+        <line x1="118" y1="28" x2="108" y2="14" stroke="#C8AC78" stroke-width="1"/>
+      </svg>
+
+      <h2 class="reveal reveal-d1">No se queda en comprensión.<br>Se traduce en experiencia.</h2>
+      <div class="felt-body">
+        <p class="reveal reveal-d2">Cada sesión está diseñada para producir un cambio que se siente, no solo que se entiende.</p>
+        <p class="reveal reveal-d2">No es una conversación sobre lo que te pasa. Es trabajo directo con la experiencia interna: con lo que se activa en el cuerpo, con los patrones que funcionan solos, con la manera en que respondes antes de pensar.</p>
+        <p class="reveal reveal-d3">Las personas que trabajan en este proceso no salen con más información. Salen sintiendo algo diferente. Y eso es lo que genera cambio real en la vida cotidiana.</p>
+      </div>
+      <div class="felt-testimonial reveal reveal-d3">
+        <p>Durante años cargué con una presión en el pecho que no sabía cómo nombrar. En las primeras semanas del proceso, sentí que algo empezó a moverse. Para la tercera semana, casi había desaparecido. Y cuando volvía, ya sabía cómo responder.</p>
+        <div class="attr">— Valentina, 31</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIMENSIONS OF WORK -->
+<section class="dimensions">
+  <div class="container">
+    <div class="dimensions-header">
+      <span class="label reveal">Dimensiones del trabajo</span>
+      <p class="reveal reveal-d1">El programa es integral porque trabaja simultáneamente en múltiples dimensiones del funcionamiento humano. No solo en lo cognitivo. No solo en lo emocional. En el ser humano completo.</p>
+    </div>
+    <div class="dim-grid">
+      <div class="dim-item reveal">
+        <div class="dim-num">01</div>
+        <div class="dim-content">
+          <h3>Organización interna</h3>
+          <p>Las dinámicas internas — creencias, esquemas, patrones relacionales — se vuelven visibles. El trabajo es identificarlas, comprenderlas y reorganizarlas de manera que abran respuestas distintas.</p>
+        </div>
+      </div>
+      <div class="dim-item reveal reveal-d1">
+        <div class="dim-num">02</div>
+        <div class="dim-content">
+          <h3>Regulación emocional</h3>
+          <p>No se trata de suprimir lo que sientes. Se trata de desarrollar la capacidad de reconocer y responder a las emociones sin quedar gobernado por ellas — en tiempo real, en situaciones reales.</p>
+        </div>
+      </div>
+      <div class="dim-item reveal">
+        <div class="dim-num">03</div>
+        <div class="dim-content">
+          <h3>Dimensión somática</h3>
+          <p>El cuerpo registra lo que la mente no siempre articula. El trabajo incluye atención directa a las sensaciones físicas como parte del proceso de integración — no como añadido, sino como parte central.</p>
+        </div>
+      </div>
+      <div class="dim-item reveal reveal-d1">
+        <div class="dim-num">04</div>
+        <div class="dim-content">
+          <h3>Dimensión experiencial</h3>
+          <p>El cambio no sucede en la teoría. Sucede en la experiencia directa. Cada sesión es un espacio de trabajo real — no de reflexión abstracta — donde algo se mueve y se reorganiza en el momento.</p>
+        </div>
+      </div>
+      <div class="dim-item reveal">
+        <div class="dim-num">05</div>
+        <div class="dim-content">
+          <h3>Narrativa interna</h3>
+          <p>Las historias que te cuentas sobre ti mismo tienen peso real. Parte del trabajo es reconocer esas narrativas, examinarlas con honestidad y construir otras más útiles y más alineadas con quién eres.</p>
+        </div>
+      </div>
+      <div class="dim-item reveal reveal-d1">
+        <div class="dim-num">06</div>
+        <div class="dim-content">
+          <h3>Perspectiva constructivista</h3>
+          <p>Entender cómo has construido tu realidad interna abre la posibilidad de construirla de otra manera. Este enfoque no busca corregirte — busca expandir tu rango de respuesta ante la vida.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY 12 WEEKS -->
+<section class="why-twelve">
+  <div class="container">
+    <div class="why-split">
+      <div class="why-left">
+        <span class="label reveal">Estructura y duración</span>
+        <h2 class="reveal reveal-d1">Doce semanas no es una cifra arbitraria.</h2>
+      </div>
+      <div class="why-right">
+        <p class="reveal">Este tipo de trabajo requiere continuidad. Los patrones que funcionan en automático se instalaron con el tiempo — y cambiarlos también lleva tiempo. No hay atajos en esto.</p>
+        <p class="reveal reveal-d1">Doce semanas permiten que el trabajo tenga capas. No es lo mismo la semana dos que la semana nueve. El proceso tiene estructura, dirección y progresión deliberada — cada etapa construye sobre la anterior.</p>
+        <p class="reveal reveal-d2">Las prácticas entre sesiones existen para que lo trabajado no se quede en el contexto de la sesión, sino que se integre en la vida real: en las decisiones del día a día, en las relaciones, en la manera en que respondes cuando hay presión.</p>
+        <p class="reveal reveal-d3">Al final de las doce semanas, el cambio no es una idea que adquiriste. Es algo que ya funciona diferente en ti.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GEOGRAPHIC REACH -->
+<section class="reach">
+  <div class="container">
+    <span class="label reveal">Alcance geográfico</span>
+    <h2 class="reveal reveal-d1">El proceso no depende<br>de dónde estás.</h2>
+    <p class="reach-sub reveal reveal-d2">El formato de videollamada hace posible trabajar con la misma calidad y profundidad que en la modalidad presencial — sin importar la ubicación. Venezuela, Latinoamérica, Europa, Estados Unidos.</p>
+    <div class="reach-countries reveal reveal-d2">
+      <div class="reach-country">
+        <span class="reach-country-name">Venezuela</span>
+        <span class="reach-country-sub">Presencial · Online</span>
+      </div>
+      <div class="reach-country">
+        <span class="reach-country-name">Colombia</span>
+        <span class="reach-country-sub">Online</span>
+      </div>
+      <div class="reach-country">
+        <span class="reach-country-name">México</span>
+        <span class="reach-country-sub">Online</span>
+      </div>
+      <div class="reach-country">
+        <span class="reach-country-name">Estados Unidos</span>
+        <span class="reach-country-sub">Online</span>
+      </div>
+      <div class="reach-country">
+        <span class="reach-country-name">España</span>
+        <span class="reach-country-sub">Online</span>
+      </div>
+    </div>
+    <p class="reach-note reveal reveal-d3">Pacientes activos en más de cinco países.</p>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <span class="label reveal">Voces del proceso</span>
+    <div class="test-grid">
+      <article class="testimonial reveal">
+        <p>Yo sabía lo que tenía que hacer, pero no lograba hacerlo. Dejé de quedarme atrapado en la duda constante. Empecé a actuar.</p>
+        <div class="attr">— Daniel, 29</div>
+      </article>
+      <article class="testimonial reveal reveal-d1">
+        <p>Siempre había ruido mental. No era crisis, pero nunca se apagaba. Ahora tengo momentos de claridad real — y sé cómo recuperarlos cuando se van.</p>
+        <div class="attr">— Mariana, 26</div>
+      </article>
+      <article class="testimonial reveal reveal-d2">
+        <p>No es motivación. Es práctico. Sales de cada sesión con algo que puedes aplicar ese mismo día. No con más información — con algo distinto funcionando.</p>
+        <div class="attr">— Andrés, 34</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS / HOW IT WORKS -->
+<section class="process">
+  <div class="container">
+    <div class="process-header">
+      <span class="label reveal">Cómo funciona</span>
+      <h2 class="reveal reveal-d1">Estructura del proceso.</h2>
+    </div>
+
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <h3>Consulta inicial — 90 minutos — $30 USD</h3>
+        <p>Antes de comprometerte con el programa, hay una sesión de 90 minutos. No es una llamada de ventas. Es trabajo real. Conversamos sobre lo que estás viviendo. Haces una práctica del tipo de trabajo que se hace en el proceso — saldrás sabiendo exactamente cómo es esto desde adentro. Si decides continuar, los $30 se descuentan del valor total.</p>
+      </div>
+    </div>
+
+    <div class="step reveal">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <h3>12 semanas de trabajo individual</h3>
+        <p>Una sesión semanal de 1 hora, completamente privada. Formato estrictamente 1:1. Cada sesión tiene estructura, dirección y propósito claro. Entre sesiones recibes prácticas específicas y un reporte post-sesión con lo abordado y tus próximos pasos.</p>
+      </div>
+    </div>
+
+    <div class="step reveal">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <h3>Documento de cierre</h3>
+        <p>Al finalizar las 12 semanas recibes un documento que mapea tu proceso completo: los patrones trabajados, los cambios desarrollados, los aprendizajes integrados. Una referencia concreta de lo que construiste.</p>
+      </div>
+    </div>
+
+    <div class="includes-strip reveal">
+      12 sesiones 1:1 &nbsp;·&nbsp; Prácticas entre sesiones &nbsp;·&nbsp; Reporte post-sesión &nbsp;·&nbsp; Documento de cierre &nbsp;·&nbsp; Acompañamiento 12 semanas
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing">
+  <div class="container">
+    <div class="pricing-header">
+      <span class="label reveal">Inversión</span>
+      <h2 class="reveal reveal-d1">Dos formas de comenzar.</h2>
+    </div>
+    <div class="pricing-grid">
+      <article class="price-card primary reveal">
+        <span class="label">Pago completo</span>
+        <div class="price">$600 USD</div>
+        <p class="note">Pago único al comenzar. Consulta inicial incluida y descontada.</p>
+      </article>
+      <article class="price-card reveal reveal-d1">
+        <span class="label label-muted">Dos cuotas</span>
+        <div class="price">$300 + $300</div>
+        <p class="note">Primera cuota al comenzar, con descuento de la consulta inicial aplicado. Segunda cuota de $300 en la semana 6.</p>
+      </article>
+    </div>
+    <p class="pricing-fine reveal reveal-d2">
+      <span class="star">*</span> Cupos limitados. El número de procesos activos es reducido por diseño.<br>
+      Presencial: Consultorio en La Quinta Mamá, Zona Country Club, Caracas.<br>
+      Videollamada: Disponible para cualquier ubicación. Venezuela y Latinoamérica.
+    </p>
+  </div>
+</section>
+
+<!-- ABOUT OSCAR -->
+<section class="about">
+  <div class="container">
+    <div class="about-split">
+      <div class="about-left reveal">
+        <h2 class="about-name">Oscar Pietri</h2>
+        <div class="about-role">Fundador de ARKŌ · Psicólogo<br>Psicología Humanista y Transpersonal</div>
+        <div class="about-rule"></div>
+      </div>
+      <div class="about-bio">
+        <p class="reveal">Mi formación es en psicología humanista y transpersonal. Eso moldea la manera en que entiendo a las personas desde un punto de partida fundamental: no estás roto.</p>
+        <p class="reveal reveal-d1">El trabajo que hago no está centrado en defectos ni en disfunciones como identidad. No se trata de etiquetar lo que está mal. Se trata de comprender cómo estás organizado internamente — qué patrones funcionan, cómo respondes, qué se activa en ti — y desarrollar formas de responder distintas en la vida real.</p>
+        <p class="reveal reveal-d2">Este enfoque integra comprensión profunda de las diferentes dimensiones del ser humano: la emocional, la somática, la mental, la relacional. Incluye prácticas contemplativas aplicadas y procesos de exploración interna orientados a resultados concretos — no a la acumulación de insight, sino a la capacidad de vivir diferente.</p>
+        <p class="reveal reveal-d3">ARKŌ surge de una frustración concreta: hay muchos programas, talleres y coaches que no producen el cambio sentido que las personas buscan en la vida diaria. Las personas quieren sentirse más capaces, más presentes, más claras, más estables por dentro — no solo inspiradas o informadas. Este proceso existe para trabajar exactamente eso.</p>
+
+        <div class="no-patologico reveal reveal-d3">
+          <span class="label">Enfoque no patológico</span>
+          <p>El proceso no parte de la idea de que algo en ti está fundamentalmente mal. No reduce tu experiencia a síntomas ni te define por tus patrones. El trabajo es entender cómo te organizas internamente — y desarrollar la capacidad de responder de forma diferente. La persona no es su patrón. Es quien puede cambiarlo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER: FOR WHO / NOT FOR WHO -->
+<section class="filter">
+  <div class="container">
+    <div class="filter-grid">
+      <div class="filter-col yes reveal">
+        <h3>Para quién es</h3>
+        <ul class="filter-list">
+          <li>Sobrepiensas constantemente y eso te cuesta claridad</li>
+          <li>Te cuesta tomar decisiones incluso cuando ves las cosas claras</li>
+          <li>Tienes insight sobre ti mismo pero los patrones continúan</li>
+          <li>Quieres un proceso real, estructurado, con dirección — no motivación temporal</li>
+        </ul>
+      </div>
+      <div class="filter-col no reveal reveal-d1">
+        <h3>Para quién no es</h3>
+        <ul class="filter-list">
+          <li>Buscas soluciones rápidas o resultados sin proceso real</li>
+          <li>No estás dispuesto a cuestionar tus patrones</li>
+          <li>Prefieres consumir contenido antes que aplicar cambios</li>
+          <li>Buscas terapia clínica o acompañamiento emocional de soporte</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final" id="consulta">
+  <div class="container">
+    <h2 class="reveal">El primer paso es<br>la consulta inicial.</h2>
+    <p class="sub reveal reveal-d1">90 minutos para conocer el proceso desde adentro.<br>Decide con información real.</p>
+    <div class="final-ctas reveal reveal-d2">
+      <a href="https://calendly.com/oak-arkowellness/consulta-inicial-coaching-para-bienestar-integral"
+         target="_blank" rel="noopener" class="btn-primary">Agendar consulta inicial</a>
+      <a href="https://wa.me/message/M2ORJJH5GUKRN1"
+         target="_blank" rel="noopener" class="link-secondary">Escribir directamente <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  ARKŌ &nbsp;·&nbsp; Coaching para Bienestar Integral &nbsp;·&nbsp; Oscar Pietri
+</footer>
+
+<script>
+(function () {
+  /* Nav on scroll */
+  var nav = document.getElementById('siteNav');
+  var lastScroll = -1;
+  function onScroll() {
+    var s = window.scrollY || window.pageYOffset;
+    if (s === lastScroll) return;
+    lastScroll = s;
+    nav.classList.toggle('scrolled', s > 20);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* Scroll reveal via IntersectionObserver */
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+})();
+</script>
+
+</body>
+</html>
